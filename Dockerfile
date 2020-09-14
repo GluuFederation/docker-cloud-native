@@ -6,7 +6,7 @@ FROM python:3.8-slim-buster
 ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.2
 ENV SECRET_KEY="e768fcc1f3451e86d0asdaskljd8293242ab83d4b0e6cac64ab5b7894sdfsdfv1"
 RUN apt update \
-    && apt-get install git tini make -y --no-install-recommends && pip3 install requests \
+    && apt-get install git tini make -y --no-install-recommends && pip3 install requests shiv \
     &&  git clone --recursive --depth 1 --branch ${GLUU_CLOUD_NATIVE_EDITION_VERSION} https://github.com/GluuFederation/cloud-native-edition \
     && cd cloud-native-edition && cat setup.py \
     &&  make install guizipapp
