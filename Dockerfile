@@ -10,7 +10,7 @@ RUN apt update \
     &&  git clone --recursive --depth 1 --branch ${GLUU_CLOUD_NATIVE_EDITION_TAG} https://github.com/GluuFederation/cloud-native-edition \
     && cd cloud-native-edition \
     # Remove below section after https://github.com/GluuFederation/cloud-native-edition/issues/214 fix
-    && cat settings.py \
+    && cat pygluu/kubernetes/settings.py \
     | sed 's#CONFIRM_PARAMS="N"#CONFIRM_PARAMS="Y"#g' \
     | sed 's#GLUU_GATEWAY_UI_DATABASE=""#GLUU_GATEWAY_UI_DATABASE="konga"#g' > tmpfile && mv tmpfile settings.py \
     # end of section to be removed
@@ -63,4 +63,3 @@ LABEL name="Gluu-CN-Installer" \
     description="Gluu cloud native edition installer"
 
 ENTRYPOINT ["tini", "-g", "--", "./cloud-native-edition/pygluu-kubernetes-gui.pyz"]
-CMD ["--help"]
