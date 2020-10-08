@@ -53,7 +53,7 @@ LABEL name="Gluu-CN-Installer" \
     maintainer="Gluu Inc. <support@gluu.org>" \
     vendor="Gluu Federation" \
     version="4.2.1" \
-    release="a1" \
+    release="a2" \
     summary="Gluu cloud native edition installer" \
     description="Gluu cloud native edition installer"
 
