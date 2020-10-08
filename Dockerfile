@@ -12,7 +12,8 @@ RUN apt update \
     # Remove below section after https://github.com/GluuFederation/cloud-native-edition/issues/214 fix
     && cat pygluu/kubernetes/settings.py \
     | sed 's#CONFIRM_PARAMS="N"#CONFIRM_PARAMS="Y"#g' \
-    | sed 's#GLUU_GATEWAY_UI_DATABASE=""#GLUU_GATEWAY_UI_DATABASE="konga"#g' > tmpfile && mv tmpfile settings.py \
+    | sed 's#GLUU_GATEWAY_UI_DATABASE=""#GLUU_GATEWAY_UI_DATABASE="konga"#g' > tmpfile \
+    && mv tmpfile pygluu/kubernetes/settings.py \
     # end of section to be removed
     &&  make install guizipapp
 
