@@ -4,11 +4,16 @@ FROM python:3.8-slim-buster
 # ===========================
 ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.2
 ENV GLUU_CLOUD_NATIVE_EDITION_TAG="v1.2.13"
-ENV SECRET_KEY="e768fcc1f3451e86d0asdaskljd8293242ab83d4b0e6cac64ab5b7894sdfsdfv1"
+ENV SECRET_KEY=""
 RUN apt update \
     && apt-get install git tini make -y --no-install-recommends && pip3 install requests shiv \
     &&  git clone --recursive --depth 1 --branch ${GLUU_CLOUD_NATIVE_EDITION_TAG} https://github.com/GluuFederation/cloud-native-edition \
     && cd cloud-native-edition \
+    # Remove below section after https://github.com/GluuFederation/cloud-native-edition/issues/214 fix
+    && cat settings.py \
+    | sed 's#CONFIRM_PARAMS="N"#CONFIRM_PARAMS="Y"#g' \
+    | sed 's#GLUU_GATEWAY_UI_DATABASE=""#GLUU_GATEWAY_UI_DATABASE="konga"#g' > tmpfile && mv tmpfile settings.py
+    # end of section to be removed
     &&  make install guizipapp
 
 # ================
@@ -57,5 +62,5 @@ LABEL name="Gluu-CN-Installer" \
     summary="Gluu cloud native edition installer" \
     description="Gluu cloud native edition installer"
 
-ENTRYPOINT ["tini", "-g", "--", "./pygluu-kubernetes-gui.pyz"]
+ENTRYPOINT ["tini", "-g", "--", "./cloud-native-edition/pygluu-kubernetes-gui.pyz"]
 CMD ["--help"]
