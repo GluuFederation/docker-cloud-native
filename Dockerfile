@@ -2,13 +2,13 @@ FROM python:3.8-slim-buster
 # ===========================
 # Cloud Native Python package
 # ===========================
-
 ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.2
+ENV GLUU_CLOUD_NATIVE_EDITION_TAG=1.2.12
 ENV SECRET_KEY="e768fcc1f3451e86d0asdaskljd8293242ab83d4b0e6cac64ab5b7894sdfsdfv1"
 RUN apt update \
     && apt-get install git tini make -y --no-install-recommends && pip3 install requests shiv \
-    &&  git clone --recursive --depth 1 --branch ${GLUU_CLOUD_NATIVE_EDITION_VERSION} https://github.com/GluuFederation/cloud-native-edition \
-    && cd cloud-native-edition && cat setup.py \
+    &&  git clone --recursive --depth 1 --branch ${GLUU_CLOUD_NATIVE_EDITION_TAG} https://github.com/GluuFederation/cloud-native-edition \
+    && cd cloud-native-edition \
     &&  make install guizipapp
 
 # ================
@@ -53,7 +53,7 @@ LABEL name="Gluu-CN-Installer" \
     maintainer="Gluu Inc. <support@gluu.org>" \
     vendor="Gluu Federation" \
     version="4.2.1" \
-    release="dev" \
+    release="a1" \
     summary="Gluu cloud native edition installer" \
     description="Gluu cloud native edition installer"
 
