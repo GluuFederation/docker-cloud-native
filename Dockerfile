@@ -3,7 +3,7 @@ FROM python:3.8-slim-buster
 # Cloud Native Python package
 # ===========================
 ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.2
-ENV GLUU_CLOUD_NATIVE_EDITION_TAG="v1.2.13"
+ENV GLUU_CLOUD_NATIVE_EDITION_TAG="v1.2.15"
 ENV SECRET_KEY=""
 RUN apt update \
     && apt-get install git tini make -y --no-install-recommends && pip3 install requests shiv \
@@ -53,7 +53,7 @@ LABEL name="Gluu-CN-Installer" \
     maintainer="Gluu Inc. <support@gluu.org>" \
     vendor="Gluu Federation" \
     version="4.2.1" \
-    release="a2" \
+    release="a4" \
     summary="Gluu cloud native edition installer" \
     description="Gluu cloud native edition installer"
 
