@@ -2,8 +2,8 @@ FROM python:3.8-slim-buster
 # ===========================
 # Cloud Native Python package
 # ===========================
-ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.2
-ENV GLUU_CLOUD_NATIVE_EDITION_TAG="v1.2.15"
+ENV GLUU_CLOUD_NATIVE_EDITION_VERSION=4.3
+ENV GLUU_CLOUD_NATIVE_EDITION_TAG="v1.6.5"
 ENV SECRET_KEY=""
 RUN apt update \
     && apt-get install git tini make -y --no-install-recommends && pip3 install requests shiv \
@@ -52,8 +52,8 @@ COPY LICENSE /licenses/
 LABEL name="Gluu-CN-Installer" \
     maintainer="Gluu Inc. <support@gluu.org>" \
     vendor="Gluu Federation" \
-    version="4.2.1" \
-    release="a4" \
+    version="4.3.0" \
+    release="b1" \
     summary="Gluu cloud native edition installer" \
     description="Gluu cloud native edition installer"
 
